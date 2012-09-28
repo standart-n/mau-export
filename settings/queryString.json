@@ -1,0 +1,30 @@
+{
+	"protocol":
+	{
+		"value":"http"
+	},
+	"site":
+	{
+		"value":"www.mauric.ru/_export"
+	},
+	"id":
+	{
+		"validate":["urlInt"],
+		"default":0
+	},
+	"type":
+	{
+		"validate":["urlStr"],
+		"default":"price"
+	},
+	"from":
+	{
+		"validate":["urlStr"],
+		"default":"21.09.2012"
+	},
+	"to":
+	{
+		"validate":["urlStr"],
+		"default":"26.09.2012"
+	}
+}

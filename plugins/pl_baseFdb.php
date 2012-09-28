@@ -10,15 +10,17 @@ function engine(&$q) {
 						$q->$alias->type=$cn->type;
 						if (isset($cn->charset)) { $q->$alias->charset=$cn->charset; }
 						if ((isset($cn->path)) && (isset($cn->login)) && (isset($cn->password))) {
-							$q->$alias->db=ibase_connect($cn->path,$cn->login,$cn->password);
-							if (isset($cn->transactions)) {
-								foreach ($cn->transactions as $it_alias=>$it) {
-									$q->$alias->$it_alias=ibase_trans(IBASE_WRITE+IBASE_COMMITTED+IBASE_REC_VERSION+IBASE_NOWAIT,$q->$alias->db);
-								}						
-							}					
-						}				
-					}			
-				}		
+							if (($cn->path!="") && ($cn->login!="") && ($cn->password!="")) {
+								$q->$alias->db=ibase_connect($cn->path,$cn->login,$cn->password);
+								if (isset($cn->transactions)) {
+									foreach ($cn->transactions as $it_alias=>$it) {
+										$q->$alias->$it_alias=ibase_trans(IBASE_WRITE+IBASE_COMMITTED+IBASE_REC_VERSION+IBASE_NOWAIT,$q->$alias->db);
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}

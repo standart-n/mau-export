@@ -5,7 +5,7 @@ function engine(&$q) {
 }
 
 function showExport(&$q) { $s="";
-	if (query($q,$this->getSql(),$m)) {
+	if (query($q,$this->getSql($q),$m)) {
 		foreach ($m as $key) {
 			//$s.=$q->validate->toWin($key->VAL);
 			$s.=mb_convert_encoding($key->VAL,"UTF-8","cp1251")."<br>\r\n";
@@ -14,7 +14,7 @@ function showExport(&$q) { $s="";
 	return $s;	
 }
 
-function getSql() { $s="";
+function getSql($q) { $s="";
 	$s.="select ";
 	$s.="trim(coalesce(a.caption,''))||';'|| ";
 	$s.="trim(coalesce(d.vid,''))||';'|| ";
@@ -28,7 +28,7 @@ function getSql() { $s="";
 	$s.="left join device d on ad.device_d\$uuid=d.d\$uuid ";
 	$s.="left join accounts a on d.account_d\$uuid=a.d\$uuid ";
 	$s.="left join buildings b on a.building_d\$uuid=b.d\$uuid ";
-	$s.="where cast(ad.insertdt as dm_date) between '10.09.2012' and '26.09.2012' ";
+	$s.="where cast(ad.insertdt as dm_date) between '".$q->url->from."' and '".$q->url->to."' ";
 	$s.="order by d.caption	";
 	return $s;
 }

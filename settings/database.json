@@ -1,0 +1,31 @@
+{
+	"settings":
+	{
+		"type_of_data_return":"object",
+		"limit_of_rows":1000
+	},
+	"default":
+	{
+		"connection":"fdb",
+		"transaction":"it"
+	},
+	"connections":
+	{
+		"fdb":
+		{
+			"alias":"fdb",
+			"type":"firebird",
+			"path":"",
+			"login":"",
+			"password":"",
+			"charset":"cp1251",
+			"transactions":
+			{
+				"it":
+				{
+					"access":"all"
+				}
+			}
+		}
+	}
+}
