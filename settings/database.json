@@ -2,7 +2,7 @@
 	"settings":
 	{
 		"type_of_data_return":"object",
-		"limit_of_rows":1000
+		"limit_of_rows":10000
 	},
 	"default":
 	{

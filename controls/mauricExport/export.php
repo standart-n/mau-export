@@ -4,9 +4,10 @@ function engine(&$q) {
 	$q->html=$this->showExport($q);
 }
 
-function showExport(&$q) { $s="";
+function showExport(&$q) { $s=""; $i=0;
 	if (query($q,$this->getSql($q),$m)) {
-		foreach ($m as $key) {
+		//echo $this->getSql($q);
+		foreach ($m as $key) { $i++;
 			//$s.=$q->validate->toWin($key->VAL);
 			$s.=mb_convert_encoding($key->VAL,"UTF-8","cp1251")."<br>\r\n";
 		}
@@ -29,7 +30,7 @@ function getSql($q) { $s="";
 	$s.="left join accounts a on d.account_d\$uuid=a.d\$uuid ";
 	$s.="left join buildings b on a.building_d\$uuid=b.d\$uuid ";
 	$s.="where cast(ad.insertdt as dm_date) between '".$q->url->from."' and '".$q->url->to."' ";
-	$s.="order by d.caption	";
+	$s.="order by d.caption;";
 	return $s;
 }
 
