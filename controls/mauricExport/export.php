@@ -12,6 +12,7 @@ function showExport(&$q) { $s=""; $i=0;
 			$s.=mb_convert_encoding($key->VAL,"UTF-8","cp1251")."<br>\r\n";
 		}
 	}
+	//echo "[".$i."]";
 	return $s;	
 }
 
@@ -29,7 +30,7 @@ function getSql($q) { $s="";
 	$s.="left join device d on ad.device_d\$uuid=d.d\$uuid ";
 	$s.="left join accounts a on d.account_d\$uuid=a.d\$uuid ";
 	$s.="left join buildings b on a.building_d\$uuid=b.d\$uuid ";
-	$s.="where cast(ad.insertdt as dm_date) between '".$q->url->from."' and '".$q->url->to."' ";
+	$s.="where (cast(ad.insertdt as dm_date) between '".$q->url->from."' and '".$q->url->to."') and (b.SREGION='') ";
 	$s.="order by d.caption;";
 	return $s;
 }
