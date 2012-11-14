@@ -26,5 +26,10 @@
 	{
 		"validate":["urlStr"],
 		"default":"26.09.2012"
+	},
+	"region":
+	{
+		"validate":["urlStr"],
+		"default":"Все"
 	}
 }
